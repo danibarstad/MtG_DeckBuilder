@@ -1,3 +1,6 @@
+{% extends 'mtg_deckbuilder/base.html' %}
+{% block content %}
+
 <h2>Magic: the Gathering Deck Builder</h2>
 
 <form method="POST" action="{% url 'deck_list' %}">
@@ -18,3 +21,5 @@
 <P> You have no decks in your deck list</P>
 
 {% endfor %}
+
+{% endblock %}

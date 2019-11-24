@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Magic: The Gathering Fantasy Deck Builder</title>
+    </head>
+    <body>
+
+    <h1>What would you like to do?</h1>
+
+        {% block content %}
+        {% endblock %}
+    
+    <hr>
+
+    <div>
+        <p>A deck building site built with Django.</p>
+
+        <a href="{% url 'deck_list' %}">Your unfinished decks</a>
+    </div>
+
+    </body>
+</html>
