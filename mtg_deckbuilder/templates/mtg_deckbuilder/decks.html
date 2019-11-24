@@ -1,0 +1,20 @@
+<h2>Magic: the Gathering Deck Builder</h2>
+
+<form method="POST" action="{% url 'deck_list' %}">
+    {% csrf_token %}
+    {{ new_deck_form }}
+    <button type="submit">Add</button>
+</form>
+
+
+{% for deck in decks %}
+
+<div>
+    {{ deck.name }}
+</div>
+
+{% empty %}
+
+<P> You have no decks in your deck list</P>
+
+{% endfor %}
