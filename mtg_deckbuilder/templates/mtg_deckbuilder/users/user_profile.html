@@ -1,0 +1,52 @@
+{% extends 'mtg_deckbuilder/base.html'}
+{% block content %}
+
+<!-- A user's profile page.
+
+Includes list of user's decks with title.-->
+
+<h2 id='username'>{{ user.username }}</h2>
+
+<div class='profile_info'>
+    <p id='users_name'>{{ user.first_name }} {{ user.last_name }}</p>
+    <p id='email'>{{ user.email }}</p>
+    {% if user.username %}
+    <form action="{% url 'mtg_deckbuilder/edit_user_profile' %}">
+        <input id="EditProfileForm" type='submit' value='Edit Profile'>
+    </form>
+    {% endif %}
+</div>
+
+<h2 id='username_decks'>{{ user.username }}'s decks</h2>
+<p><div class="fb-like" data-href="request.build_absolute_uri" data-layout="standard" 
+        data-action="like" data-show-faces="true" data-share="true"></div></p>
+
+    <a href="https://www.facebook.com/sharer/sharer.php?u={{ request.build_absolute_uri }}"></a>"
+{% for deck in decks %}
+
+<div class='deck' id="deck_{{ deck.pk }}">
+    <h3 class="deck_title"><a href="{% url 'deck_detail' deck_pk=deck.pk %}">{{ deck.title }}</a></h3>
+    <p class="deck_info">{{ deck.user.name }}</p>
+    <p class="deck_text">{{ deck.text|truncatechars:100}}</p>
+<div class='row'>
+    <div class='col-sm-12'>
+    {{ instance.content|linebreaks }}</br>
+    <hr/>
+    <hr/>
+    <div class="fb-comments" data=href="request.build_absolute_uri" data-width=""data-nuposts="5">
+
+
+    </div>
+    </div>
+<hr>
+
+</div>
+
+{% empty %}
+
+    <p id='no_records'>No decks.</p>
+
+    {% endfor %}
+
+{% endblock %}
+</div>
