@@ -1,4 +1,4 @@
-{% extends 'mtg_deckbuilder/base.html %'}
+{% extends 'mtg_deckbuilder/base.html' %}
 
 {% block content %}
 
@@ -12,6 +12,6 @@
         <button type="submit">Login</button>
     </form>
 
-    <p><a href="{% url 'mtg_deckbuilder:register' %}">Or create an account</a></p>
+    <p><a href="{% url 'register' %}">Or create an account</a></p>
 
     {% endblock %}
