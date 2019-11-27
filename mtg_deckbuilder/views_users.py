@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 
 from .models import Deck
+from .forms import UserRegistrationForm, EditProfileForm
 
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required

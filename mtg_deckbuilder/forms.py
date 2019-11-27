@@ -12,7 +12,7 @@ class NewDeckForm(forms.ModelForm):
         fields = ('name', 'desc', 'finished')
 
 
-class UserRegistrationForm(UserChangeForm):
+class UserRegistrationForm(UserCreationForm):
     class Meta:
         model = User
         fields = ('username', 'first_name', 'last_name', 'email', 'password1', 'password2')
@@ -42,7 +42,7 @@ class UserRegistrationForm(UserChangeForm):
     def clean_last_name(self):
         last_name = self.cleaned_data['last_name']
         if not last_name:
-            raise ValidationError()'Please enter your last name')
+            raise ValidationError('Please enter your last name')
     
         return last_name
     
