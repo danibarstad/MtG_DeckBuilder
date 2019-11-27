@@ -10,6 +10,7 @@ User._meta.get_field('first_name')._blank = False
 
 class Deck(models.Model):
     name = models.CharField(max_length=100)
+    desc = models.CharField(max_length=100)
     finished = models.BooleanField(default=False)
 
     def __str__(self):

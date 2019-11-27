@@ -9,7 +9,7 @@ from django.forms import ValidationError
 class NewDeckForm(forms.ModelForm):
     class Meta:
         model = Deck
-        fields = ('name', 'finished')
+        fields = ('name', 'desc', 'finished')
 
 
 class UserRegistrationForm(UserChangeForm):
