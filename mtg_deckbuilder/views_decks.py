@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from .models import Deck
 from .forms import NewDeckForm
 
@@ -27,5 +27,12 @@ def deck_list(request):
     new_deck_form = NewDeckForm()
     return render(request, 'mtg_deckbuilder/decks.html', { 'decks': decks, 'new_deck_form': new_deck_form })
 
-def deck_detail():
-    return 'hey'
+
+def latest_decks(request):
+    decks = Deck.objects.all()
+    return render(request, 'decks/deck_list.html', {'decks': decks})
+
+
+def deck_detail(request, deck_pk):
+    deck = get_object_or_404(Deck, pk=deck_pk)
+    return render(request, 'decks/deck_detail.html' , {'deck' : deck })
