@@ -13,8 +13,8 @@ from django.contrib.auth.forms import PasswordChangeForm
 
 def user_profile(request, user_pk):
     user = User.objects.get(pk=user_pk)
-    userdecks = Deck.object.filter(user=user.pk)
-    return render(request, 'users/user_profile.html', {'user' : user , 'decks' : userdecks })
+    userdecks = Deck.objects.filter(user=user.pk)
+    return render(request, 'mtg_deckbuilder/users/user_profile.html', {'user' : user , 'decks' : userdecks })
 
 
 @login_required

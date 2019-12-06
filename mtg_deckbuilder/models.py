@@ -9,9 +9,9 @@ User._meta.get_field('first_name')._blank = False
 
 
 class Deck(models.Model):
+    user = models.ForeignKey('auth.User', blank=False, on_delete=models.CASCADE)
     name = models.CharField(max_length=100)
-    desc = models.CharField(max_length=100)
-    finished = models.BooleanField(default=False)
+    text = models.CharField(max_length=100)
 
     def __str__(self):
-        return f'{self.name}, finished? {self.finished}'
+        return f'{self.name}'

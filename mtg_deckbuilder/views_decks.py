@@ -23,6 +23,6 @@ def deck_list(request):
 
     # If not a POST, or the form is not valid, render the page
     # with the form to add a new deck, and list of decks
-    decks = Deck.objects.filter(finished=False).order_by('name')
+    decks = Deck.objects.order_by('name')
     new_deck_form = NewDeckForm()
     return render(request, 'mtg_deckbuilder/decks.html', { 'decks': decks, 'new_deck_form': new_deck_form })

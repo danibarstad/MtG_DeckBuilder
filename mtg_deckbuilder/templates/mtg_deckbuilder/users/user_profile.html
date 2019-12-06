@@ -11,7 +11,7 @@ Includes list of user's decks with title.-->
     <p id='users_name'>{{ user.first_name }} {{ user.last_name }}</p>
     <p id='email'>{{ user.email }}</p>
     {% if user.username %}
-    <form action="{% url 'mtg_deckbuilder/edit_user_profile' %}">
+    <form action="{% url 'edit_user_profile' %}"></form>
         <input id="EditProfileForm" type='submit' value='Edit Profile'>
     </form>
     {% endif %}
