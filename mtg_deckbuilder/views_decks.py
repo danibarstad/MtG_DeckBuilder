@@ -26,3 +26,6 @@ def deck_list(request):
     decks = Deck.objects.order_by('name')
     new_deck_form = NewDeckForm()
     return render(request, 'mtg_deckbuilder/decks.html', { 'decks': decks, 'new_deck_form': new_deck_form })
+
+def deck_detail():
+    return 'hey'
