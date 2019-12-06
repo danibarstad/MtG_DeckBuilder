@@ -2,32 +2,37 @@ from mtgsdk import Card, Set
 import random
 
 def main():
-    while True:
-        setName = get_set()
-        card = get_random_card(setName)
-        is_not_null(card)
-        flava_flav = get_flavor_text(card)
+    setName = get_set()
+    card = get_random_card(setName)
+    flava_flav = get_flavor_text(card)
+    print(flava_flav)
 
 
 def get_set():
     sets = Set.all()
     return random.choice(sets)
+    
 
 
 def get_random_card(s):
-    cards = Card.where(types='creature') \
-                .where(set=s.name) \
+    cards = Card.where(set=s.code) \
+                .where(types='creature') \
                 .all()
     return random.choice(cards)
 
 
 def get_flavor_text(card):
-    return card.flavor
+    if is_not_null(card):
+        return card.flavor
+    else:
+        return 'sorry'
 
 
 def is_not_null(card):
     if card.flavor != None:
         return True
+    else:
+        return False
 
 
 main()
