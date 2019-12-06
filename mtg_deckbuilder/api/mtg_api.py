@@ -20,7 +20,7 @@ def get_random_card(s):
                 .all()
     return random.choice(cards)
 
-
+# TODO: redo so it always return a card with flavor text, and retries if there is none
 def get_flavor_text(card):
     if is_not_null(card):
         return card.flavor
