@@ -6,7 +6,7 @@
 {% for deck in decks %}
 
 <div class='deck' id="deck_{{ deck.pk }}">
-    <span><h3 class="deck_name"><a hred="{% url 'deck_detail' deck_pk=deck.pk %}">{{ deck.name }}</a></h3> by {{ deck.user.username }}</span>
+    <h4 class="deck_name" style='display:inline'><a href="{% url 'deck_detail' deck_pk=deck.pk %}">{{ deck.name }}</a></h4><p style='display:inline'> by {{ deck.user.username }}</p>
     <p class="deck_text">{{ deck.text }}</p>
 
 {% empty %}
