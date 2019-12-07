@@ -3,4 +3,19 @@
 
 <h2>Magic: the Gathering Deck Builder</h2>
 
+{% for deck in decks %}
+
+<div if="deck_{{ deck.pk }}">
+    <h3 class="deck_name">{{ deck.name }}</h3>
+    <p class="deck_info">by <a class='user' href="{% url 'user_profile' user_pk=deck.pk %}">{{ deck.user.username }}</a></p>
+    <p class='deck_text'>{{ deck.text }}</p>
+    <hr>
+
+{% empty %}
+
+<p>No decks</p>
+
+{% endfor %}
+</div>
+
 {% endblock %}

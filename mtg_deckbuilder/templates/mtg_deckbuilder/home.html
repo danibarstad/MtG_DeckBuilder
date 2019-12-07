@@ -1,7 +1,20 @@
 {% extends 'mtg_deckbuilder/base.html' %}
-
 {% block content %}
 
-<P>Welcome!</P>
+<h2>All Decks</h2>
+
+{% for deck in decks %}
+
+<div if="deck_{{ deck.pk }}">
+    <h3 class="deck_name">{{ deck.name }}</h3>
+    <p class='deck_text'>{{ deck.text }}</p>
+    <hr>
+
+{% empty %}
+
+<p>No decks</p>
+
+{% endfor %}
+</div>
 
 {% endblock %}
