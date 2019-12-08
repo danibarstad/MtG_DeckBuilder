@@ -34,12 +34,12 @@ def edit_user_profile(request):
         else:
             message = 'Please check the changes you entered'
             args = {'form': form, 'message': message}
-            return render(request, 'users/edit_user_profile.html', args)
+            return render(request, 'mtg_deckbuilder/users/edit_user_profile.html', args)
         
     else:
         form = EditProfileForm(instance=request.user)
         args = {'form': form}
-        return render(request, 'users/edit_user_profile.html', args)
+        return render(request, 'mtg_deckbuilder/users/edit_user_profile.html', args)
 
 
 @login_required
