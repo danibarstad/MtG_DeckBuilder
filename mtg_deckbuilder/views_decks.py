@@ -39,7 +39,7 @@ def latest_decks(request):
 
 def deck_detail(request, deck_pk):
     deck = get_object_or_404(Deck, pk=deck_pk)
-    return render(request, 'decks/deck_detail.html' , {'deck' : deck })
+    return render(request, 'mtg_deckbuilder/decks/deck_detail.html' , {'deck' : deck })
 
 
 @login_required
