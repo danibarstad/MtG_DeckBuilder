@@ -2,6 +2,10 @@ from django.shortcuts import render, redirect, get_object_or_404
 from .models import Deck
 from .forms import NewDeckForm
 
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth.models import User
+from django.contrib.auth import authenticate, login, logout
+
 def deck_list(request):
 
     """If this is a POST request, the user clicked the Add button
@@ -36,3 +40,21 @@ def latest_decks(request):
 def deck_detail(request, deck_pk):
     deck = get_object_or_404(Deck, pk=deck_pk)
     return render(request, 'decks/deck_detail.html' , {'deck' : deck })
+
+
+@login_required
+def new_deck(request):
+
+    if request.method == 'POST' :
+
+        form = NewDeckForm(request.POST, request.FILES, instance=None)
+        if form.is_valid():
+            deck = form.save(commit=False)
+            deck.user = request.user
+            deck.save()
+            return redirect('decks/deck_detail', deck_pk=deck.pk)
+
+    else :
+        form = NewDeckForm()
+
+    return render(request, 'mtg_deckbuilder/decks/new_deck.html' , { 'form' : form })

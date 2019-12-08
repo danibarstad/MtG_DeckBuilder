@@ -10,6 +10,7 @@ urlpatterns = [
     # Decks
     path('', views_decks.deck_list, name='deck_list'),
     path('decks/detail/<int:deck_pk>/', views_decks.deck_detail, name='deck_detail'),
+    path('decks/add/', views_decks.new_deck, name='new_deck'),
 
     # Users
     path('user/profile/<int:user_pk>/', views_users.user_profile, name='user_profile'),
