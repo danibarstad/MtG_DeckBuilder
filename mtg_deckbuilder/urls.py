@@ -1,5 +1,5 @@
 from django.urls import path
-from . import views, views_decks, views_users, api
+from . import views, views_decks, views_users, mtg_api
 
 from django.contrib.auth import views as auth_views
 
@@ -21,5 +21,8 @@ urlpatterns = [
     # Account
     path('accounts/login/', auth_views.LoginView.as_view(template_name='registration/login.html'), name='login'),
     path('accounts/logout/', auth_views.LogoutView.as_view(template_name='registration/logout.html'), name='logout'),
-    path('register/', views_users.register, name='register')
+    path('register/', views_users.register, name='register'),
+
+    # API
+    path('flavor_text', mtg_api.get_data, name='get_flavor_text')
 ]
