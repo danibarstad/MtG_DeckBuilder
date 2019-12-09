@@ -10,7 +10,10 @@ Includes list of user's decks with title.-->
 <div class='profile_info'>
     <p id='users_name'>{{ user.first_name }} {{ user.last_name }}</p>
     <p id='email'>{{ user.email }}</p>
-    {% if user.username %}
+
+    <!-- Found the following line from
+    https://stackoverflow.com/questions/32829088/how-to-show-profile-editing-features-only-to-accounts-owner-in-django -->
+    {% if user == request.user and request.user.is_authenticated %}
     <form action="{% url 'edit_user_profile' %}">
         <input id="EditProfileForm" type='submit' value='Edit Profile'>
     </form>

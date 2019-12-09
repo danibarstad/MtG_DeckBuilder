@@ -14,6 +14,12 @@ from django.contrib.auth.forms import PasswordChangeForm
 def user_profile(request, user_pk):
     user = User.objects.get(pk=user_pk)
     userdecks = Deck.objects.filter(user=user.pk)
+
+    
+    editable = False
+    if request.user.is_authenticated and request.user == user:
+        editable = True
+
     return render(request, 'mtg_deckbuilder/users/user_profile.html', {'user' : user , 'decks' : userdecks })
 
 
