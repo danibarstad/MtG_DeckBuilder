@@ -52,7 +52,7 @@ def new_deck(request):
             deck = form.save(commit=False)
             deck.user = request.user
             deck.save()
-            return redirect('deck_list')
+            return redirect('deck_detail', deck_pk=deck.pk)
 
     else :
         form = NewDeckForm()
