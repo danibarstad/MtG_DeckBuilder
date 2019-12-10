@@ -1,13 +1,18 @@
 from mtgsdk import Card, Set
-import random
+import random, requests
 from django.http import HttpResponse
 
-def get_data(requests):
+
+def flava(requests):
+    # get_data()
+    return HttpResponse(get_data())
+
+def get_data():
     setName = get_set()
     card = get_random_card(setName)
     flava_flav = get_flavor_text(card)
     # print(flava_flav)
-    return HttpResponse(flava_flav)
+    return flava_flav
 
 
 def get_set():
@@ -38,4 +43,4 @@ def is_not_null(card):
 
 
 if __name__ == "__main__":
-    get_data(requests)
+    flava(requests)
