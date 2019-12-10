@@ -1,7 +1,7 @@
 {% extends 'mtg_deckbuilder/base.html' %}
 {% block content %}
 
-<h2 class="deck_name" style='display:inline'><a href="{% url 'deck_detail' deck_pk=deck.pk %}">{{ deck.name }}</a></h2><p style='display:inline'> by {{ deck.user.username }}</p>
+<h2 class="deck_name" style='display:inline'>{{ deck.name }}</h2><p style='display:inline'> by <a href="{% url 'user_profile' user_pk=deck.user.pk %}">{{ deck.user.username }}</a></p>
     
     <p class="deck_text">&emsp;{{ deck.text }}</p>
 
