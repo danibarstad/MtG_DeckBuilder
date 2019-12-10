@@ -1,8 +1,17 @@
+{% load static %}
 <!DOCTYPE html>
 <html>
     <head>
         <title>Magic: The Gathering Fantasy Deck Builder</title>
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/kognise/water.css@latest/dist/dark.min.css">
+        
+        
+        <script>
+            // provide template context variable to JavaScript
+            let randomUrl = "{% url 'get_flavor_text' %}"
+        </script>
+        <!-- Load script, will run once page is loaded -->
+        <script async defer src="{% static '/js/random_card.js' %}"></script>
     </head>
     <body>
 
@@ -24,9 +33,11 @@
     
     <hr>
 
-    <div>
-        {{ get_flavor_text }}
-        <p>( This will be flavor text from a random card )</p>
+    <div> 
+    
+        <!-- random flavor shown here  -->
+        <p id="random-card-flavor"></p>
+          
     </div>
 
     </body>
