@@ -24,5 +24,8 @@ urlpatterns = [
     path('register/', views_users.register, name='register'),
 
     # API
-    path('flavor_text/', mtg_api.flava, name='get_flavor_text')
+    path('flavor_text/', mtg_api.flava, name='get_flavor_text'),
+
+    # Card List
+    # path('', view='', name='')
 ]

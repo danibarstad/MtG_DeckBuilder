@@ -4,14 +4,7 @@
     <head>
         <title>Magic: The Gathering Fantasy Deck Builder</title>
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/kognise/water.css@latest/dist/dark.min.css">
-        
-        
-        <script>
-            // provide template context variable to JavaScript
-            let randomUrl = "{% url 'get_flavor_text' %}"
-        </script>
-        <!-- Load script, will run once page is loaded -->
-        <script async defer src="{% static '/js/random_card.js' %}"></script>
+
     </head>
     <body>
 
@@ -34,9 +27,16 @@
     <hr>
 
     <div> 
-    
+            <script>
+                // provide template context variable to JavaScript
+                let randomUrl = "{% url 'get_flavor_text' %}"
+            </script>
+            
+            <!-- Load script, will run once page is loaded -->
+            <script async defer src="{% static '/js/random_card.js' %}"></script>
+
         <!-- random flavor shown here  -->
-        <p id="random-card-flavor"></p>
+        <i><p id="random-card-flavor">{{ get_flavor_text }}</p></i>
           
     </div>
 

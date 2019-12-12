@@ -1,18 +1,17 @@
 from mtgsdk import Card, Set
-import random, requests
+import random
 from django.http import JsonResponse
 
 
-def flava(requests):
-    # get_data()
-    flavor = random.choice(['pizza', 'pumpkin spice', 'pomegranate'])  # idk
+def flava(request):
+    flavor =  get_data()
+    # flavor = random.choice(['pizza', 'pumpkin spice', 'pomegranate'])  # idk
     return JsonResponse({'flavor': flavor})  
   
 def get_data():
     setName = get_set()
     card = get_random_card(setName)
     flava_flav = get_flavor_text(card)
-    # print(flava_flav)
     return flava_flav
 
 
@@ -33,7 +32,7 @@ def get_flavor_text(card):
     if is_not_null(card):
         return card.flavor
     else:
-        return 'sorry'
+        return 'sorry, no flavor text'
 
 
 def is_not_null(card):
@@ -43,5 +42,5 @@ def is_not_null(card):
         return False
 
 
-if __name__ == "__main__":
-    flava(requests)
+# if __name__ == "__main__":
+#     flava(request)
