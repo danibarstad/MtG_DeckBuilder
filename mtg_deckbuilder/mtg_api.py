@@ -1,12 +1,13 @@
 from mtgsdk import Card, Set
 import random, requests
-from django.http import HttpResponse
+from django.http import JsonResponse
 
 
 def flava(requests):
     # get_data()
-    return HttpResponse(get_data())
-
+    flavor = random.choice(['pizza', 'pumpkin spice', 'pomegranate'])  # idk
+    return JsonResponse({'flavor': flavor})  
+  
 def get_data():
     setName = get_set()
     card = get_random_card(setName)
