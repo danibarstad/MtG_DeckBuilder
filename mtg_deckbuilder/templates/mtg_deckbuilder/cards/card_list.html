@@ -1,0 +1,10 @@
+<body>
+    <select id="select_cards" multiple="multiple">
+
+        {% for card in cards %}
+
+        <option value="CARD NAME">{ card.name }}</option>
+
+        {% endfor %}
+    </select>
+</body>

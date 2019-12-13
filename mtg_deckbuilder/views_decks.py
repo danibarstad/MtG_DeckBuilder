@@ -58,3 +58,8 @@ def new_deck(request):
         form = NewDeckForm()
 
     return render(request, 'mtg_deckbuilder/decks/new_deck.html' , { 'form' : form })
+
+
+@login_required
+def edit_deck(request):
+    pass

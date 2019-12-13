@@ -1,9 +1,15 @@
 from django import forms
 from .models import Deck
+from . import mtg_api
 
 from django.contrib.auth.forms import UserCreationForm, UserChangeForm
 from django.contrib.auth.models import User
 from django.forms import ValidationError
+
+
+# class CardList(forms.Form):
+#     card_list = mtg_api.get_card_list()
+#     cards = forms.ChoiceField(choices=card_list)
 
 
 class NewDeckForm(forms.ModelForm):

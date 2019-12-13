@@ -9,6 +9,7 @@ def get_card_list(request):
                 .where(pageSize=50) \
                 .all()
     return JsonResponse({'cards': cards})
+    # return cards
     # for card in cards:
     #     print(card.name)
 
