@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from .models import Deck
 from .forms import NewDeckForm
+from django.http import HttpResponseForbidden
 
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
@@ -60,6 +61,21 @@ def new_deck(request):
     return render(request, 'mtg_deckbuilder/decks/new_deck.html' , { 'form' : form })
 
 
+# help from Stack Overflow
+# https://stackoverflow.com/questions/1854237/django-edit-form-based-on-add-form
 @login_required
-def edit_deck(request):
-    pass
+def edit_deck(request, deck_pk, template_name='edit_deck.html'):
+    if deck_pk:
+        deck = get_object_or_404(Deck, pk=deck_pk)
+        if deck.user != request.user:
+            return HttpResponseForbidden()
+    else:
+        deck = Deck(user=request.user)
+    
+    form = NewDeckForm(request.POST or None, instance=deck)
+    if request.POST and form.is_valid():
+        form.save()
+
+        return redirect('deck_detail', deck_pk=deck.pk)
+    
+    return render(request, template_name, {'form':form})
