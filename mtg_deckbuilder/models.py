@@ -12,6 +12,7 @@ class Deck(models.Model):
     user = models.ForeignKey('auth.User', blank=False, on_delete=models.CASCADE)
     name = models.CharField(max_length=100)
     text = models.CharField(max_length=100)
+    # cardList = models.CharField(choices=USER_CARD_LIST)
 
     def __str__(self):
         return f'{self.name}'

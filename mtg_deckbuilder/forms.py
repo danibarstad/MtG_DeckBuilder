@@ -10,6 +10,7 @@ class NewDeckForm(forms.ModelForm):
     class Meta:
         model = Deck
         fields = ('name', 'text')
+                                # ^ add 'cardList^ when implemented
 
 
 class UserRegistrationForm(UserCreationForm):

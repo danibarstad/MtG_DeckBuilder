@@ -27,5 +27,5 @@ urlpatterns = [
     path('flavor_text/', mtg_api.flava, name='get_flavor_text'),
 
     # Card List
-    # path('', view='', name='')
+    path('card_list/', mtg_api.get_card_list, name='card_list')
 ]
