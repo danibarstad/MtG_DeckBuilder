@@ -64,7 +64,7 @@ def new_deck(request):
 # help from Stack Overflow
 # https://stackoverflow.com/questions/1854237/django-edit-form-based-on-add-form
 @login_required
-def edit_deck(request, deck_pk, template_name='edit_deck.html'):
+def edit_deck(request, deck_pk):
     if deck_pk:
         deck = get_object_or_404(Deck, pk=deck_pk)
         if deck.user != request.user:
@@ -78,4 +78,4 @@ def edit_deck(request, deck_pk, template_name='edit_deck.html'):
 
         return redirect('deck_detail', deck_pk=deck.pk)
     
-    return render(request, template_name, {'form':form})
+    return render(request, 'mtg_deckbuilder/decks/edit_deck.html', {'form':form})
