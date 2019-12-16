@@ -1,11 +1,17 @@
 from django.shortcuts import render, redirect, get_object_or_404
 import json
 from django.http import JsonResponse, HttpResponse, HttpResponseNotAllowed
+from mtgsdk import Card
+from . import mtg_api
 
-# View that gets all the possible cards and returns a response using a template 
+# View that gets all the possible cards and returns a response using a template
 def card_list(request):
-    cards = [{'name': 'cat'}, {'name': 'dog'}, {'name': 'bird'} ]  # Todo get actual data
-    deck_id = 42  # Figure out what this is 
+    # cards = [{'name': 'cat'}, {'name': 'dog'}, {'name': 'bird'} ]  # Todo get actual data
+    deck_id = 42  # Figure out what this is
+    cardList = mtg_api.get_card_list()
+    cards = []
+    for card in cardList:
+        cards.append({'name': card.name})
     return render(request, 'mtg_deckbuilder/card_list.html', {'cards': cards, 'deck_id': deck_id})
     
 

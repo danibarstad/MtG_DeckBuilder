@@ -9,29 +9,18 @@ let deckId = "{{deck_id}}"
   <script async defer src="{% static 'js/card_selector.js' %}"></script>
 
 <div>
-
-<h3>Cards you want</h3>
-
-{% for card in cards %}
-
-<p class="card-choices" id="{{card.name}}">{{ card.name }}</p>
-
-{% endfor %}
-
-
+  <h3>Cards you want</h3>
+    {% for card in cards %}
+      <p class="card-choices" id="{{card.name}}">{{ card.name }}</p>
+    {% endfor %}
 </div>
 
 <div>
-
-<h3>Cards you have chosen</h3>
-
-<div id="chosen-cards">
-
-
+  <h3>Cards you have chosen</h3>
+    <div id="chosen-cards">
+    </div>
 </div>
-
-</div>
-
-
+  
 <button id="save-button">Save Choices</button>
+
 <div id="message"></div>

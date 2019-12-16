@@ -4,20 +4,18 @@ from django.http import JsonResponse
 
 
 # Card List
-def get_card_list(request):
+def get_card_list():
+    # cards = Card.where(setName='SOI') \
+    #             .all()
     cards = Card.where(page=1) \
                 .where(pageSize=50) \
                 .all()
     return JsonResponse({'cards': cards})
-    # return cards
-    # for card in cards:
-    #     print(card.name)
 
 
 # RandomCard
 def flava(request):
     flavor =  get_data()
-    # flavor = random.choice(['pizza', 'pumpkin spice', 'pomegranate'])  # idk
     return JsonResponse({'flavor': flavor})  
 
   
@@ -39,10 +37,8 @@ def get_random_card(s):
 
 # TODO: redo so it always return a card with flavor text, and retries if there is none
 def get_flavor_text(card):
-    if is_not_null(card):
+    while is_not_null(card):
         return card.flavor
-    else:
-        return 'sorry, no flavor text'
 
 def is_not_null(card):
     if card.flavor != None:

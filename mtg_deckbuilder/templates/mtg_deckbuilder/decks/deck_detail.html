@@ -5,44 +5,4 @@
     
     <p class="deck_text">&emsp;{{ deck.text }}</p>
 
-
-
-    {% load static %}
-   
-    <script>
-    let submitCardChoiceUrl = "{% url 'save_card_list' %}"
-    let deckId = "{{deck.id}}"
-    </script>
-    
-      <script src="https://cdn.jsdelivr.net/npm/js-cookie@beta/dist/js.cookie.min.js"></script>
-      <script async defer src="{% static 'js/card_selector.js' %}"></script>
-    
-    <div>
-    
-    <h3>Cards you want</h3>
-    
-    {% for card in cards %}
-    
-    <p class="card-choices" id="{{card.name}}">{{ card.name }}</p>
-    
-    {% endfor %}
-    
-    
-    </div>
-    
-    <div>
-    
-    <h3>Cards you have chosen</h3>
-    
-    <div id="chosen-cards">
-    
-    
-    </div>
-    
-    </div>
-    
-    
-    <button id="save-button">Save Choices</button>
-    <div id="message"></div>
-
 {% endblock %}
