@@ -1,7 +1,8 @@
 from django.urls import path
-from . import views, views_decks, views_users, mtg_api
+from . import views, views_decks,  views_cards, views_users, mtg_api
 
 from django.contrib.auth import views as auth_views
+
 
 urlpatterns = [
 
@@ -28,5 +29,6 @@ urlpatterns = [
     path('flavor_text/', mtg_api.flava, name='get_flavor_text'),
 
     # Card List
-    path('card_list/', mtg_api.get_card_list, name='card_list')
+    path('card_list/', views_cards.card_list, name='card_list'),
+    path('save_card_list/', views_cards.save_user_card_list, name='save_card_list')
 ]
