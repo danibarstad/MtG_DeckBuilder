@@ -45,3 +45,40 @@ class NewDeckFormTests(TestCase):
         data = {"name": "test name", "text": "test text"}
         form = NewDeckForm(data)
         self.assertTrue(form.is_valid())
+
+
+class RegistrationFormTests(TestCase):
+
+    def test_register_with_valid_data(self):
+        data = {'username': 'dani', 'email': 'dani@dani.dani', 'first_name': 'dani', 'last_name': 'dani', 'password1': 'danidanidani1', 'password2': 'danidanidani1'}
+        form = UserRegistrationForm(data)
+        self.assertTrue(form.is_valid())
+    
+    def test_register_with_missing_data(self):
+        data = {'username': 'dani', 'email': 'dani@dani.dani', 'first_name': 'dani', 'last_name': 'dani', 'password1': 'danidanidani1', 'password2': 'danidanidani1'}
+        for field in data.keys():
+            d = dict(data)
+            del(d[field])
+            form = UserRegistrationForm(d)
+            self.assertFalse(form.is_valid())
+    
+    def test_register_with_wrong_password(self):
+        data = {'username': 'dani', 'email': 'dani@dani.dani', 'first_name': 'dani', 'last_name': 'dani', 'password1': 'danidanidani1', 'password2': 'danidanidani2'}
+        form = UserRegistrationForm(data)
+        self.assertFalse(form.is_valid())
+
+    def test_register_with_email_already_in_db(self):
+        dani = User(username='dani', email='dani@dani.dani', first_name='dani', last_name='dani')
+        dani.save()
+
+        data = {'username': 'dani2', 'email': 'dani@dani.dani', 'first_name': 'dani', 'last_name': 'dani', 'password1': 'danidanidani1', 'password2': 'danidanidani1'}
+        form = UserRegistrationForm(data)
+        self.assertFalse(form.is_valid())
+    
+    def test_register_username_already_in_db(self):
+        dani = User(username='dani', email='dani@dani.dani')
+        dani.save()
+
+        data = {'username': 'dani', 'email': 'dani2@dani.dani', 'first_name': 'dani', 'last_name': 'dani', 'password1': 'danidanidani1', 'password2': 'danidanidani1'}
+        form = UserRegistrationForm(data)
+        self.assertFalse(form.is_valid())
