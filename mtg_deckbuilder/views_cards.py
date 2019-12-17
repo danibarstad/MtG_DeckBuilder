@@ -6,7 +6,6 @@ from . import mtg_api
 
 # View that gets all the possible cards and returns a response using a template
 def card_list(request):
-    # cards = [{'name': 'cat'}, {'name': 'dog'}, {'name': 'bird'} ]  # Todo get actual data
     deck_id = 42  # Figure out what this is
     cardList = mtg_api.get_card_list()
     cards = []

@@ -5,17 +5,17 @@ from django.http import JsonResponse
 
 # Card List
 def get_card_list():
-    # cards = Card.where(setName='SOI') \
-    #             .all()
-    cards = Card.where(page=1) \
-                .where(pageSize=50) \
+    cards = Card.where(setName='Khans of Tarkir') \
                 .all()
-    return JsonResponse({'cards': cards})
+    # cards = Card.where(page=1) \
+    #             .where(pageSize=25) \
+    #             .all()
+    return cards
 
 
 # RandomCard
 def flava(request):
-    flavor =  get_data()
+    flavor = get_data()
     return JsonResponse({'flavor': flavor})  
 
   
@@ -43,5 +43,3 @@ def get_flavor_text(card):
 def is_not_null(card):
     if card.flavor != None:
         return True
-    else:
-        return False
