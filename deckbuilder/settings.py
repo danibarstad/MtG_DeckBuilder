@@ -23,9 +23,16 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = '-pw$(7%6=ra@ylr00&$y+)o-(2mhk9#)#k!1td1#v#nl(!#f03'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+if os.getenv('GAE_INSTANCE'):
+    DEBUG = False
+else:
+    DEBUG = True
 
-ALLOWED_HOSTS = ['*']
+# ALLOWED_HOSTS = ['*']
+if os.getenv('GAE_INSTANCE'):
+    ALLOWED_HOSTS = ['mtg-deck-builder-262320.appspot.com']
+else:
+    ALLOWED_HOSTS = ['127.0.0.1']
 
 
 # Application definition
@@ -76,10 +83,22 @@ WSGI_APPLICATION = 'deckbuilder.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        # local
+        # 'ENGINE': 'django.db.backends.sqlite3',
+        # 'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+
+        # postgres
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'decks',
+        'USER': 'planeswalker',
+        'PASSWORD': os.getenv('PLANESWALKER_PW'),
+        'HOST': '/cloudsql/mtg-deck-builder-262320:us-central1:mtg-deckbuilder-db',
+        'PORT': '5432'
     }
 }
+
+if not os.getenv('GAE_INSTANCE'):
+    DATABASES['default']['HOST'] = '127.0.0.1'
 
 
 # Password validation
@@ -117,6 +136,10 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.2/howto/static-files/
+
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+
+GS_STATIC_FILE_BUCKET = 'mtg-deck-builder-262320.appspot.com'
 
 STATIC_URL = '/static/'
 
