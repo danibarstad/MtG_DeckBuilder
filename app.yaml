@@ -1,15 +1,2 @@
 runtime: python37
 entrypoint: gunicorn -b :$PORT deckbuilder.wsgi
-
-handlers:
-- url: /static
-  static_dir: static/
-
-- url: /.*
-  script: auto
-
-env_variables:
-  PLANESWALKER_PW: ArchieNanaBooboo1!
-
-beta_settings:
-  cloud_sql_instances: mtg-deck-builder-262320:us-central1:mtg-deckbuilder-db

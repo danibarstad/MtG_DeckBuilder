@@ -17,10 +17,3 @@
 __pycache__/
 # Ignored by the build system
 /setup.cfg
-
-# Ignore IDE files
-.vscode
-.idea
-
-# Ignore venv
-venv
