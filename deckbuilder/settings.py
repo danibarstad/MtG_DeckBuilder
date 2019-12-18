@@ -84,21 +84,21 @@ WSGI_APPLICATION = 'deckbuilder.wsgi.application'
 DATABASES = {
     'default': {
         # local sql
-        # 'ENGINE': 'django.db.backends.sqlite3',
-        # 'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
 
         # postgres
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'decks',
-        'USER': 'planeswalker',
-        'PASSWORD': os.getenv('PLANESWALKER_PW'),
-        'HOST': '/cloudsql/mtg-deck-builder-262320:us-central1:mtg-deckbuilder-db',
-        'PORT': '5432'
+        # 'ENGINE': 'django.db.backends.postgresql',
+        # 'NAME': 'decks',
+        # 'USER': 'planeswalker',
+        # 'PASSWORD': os.getenv('PLANESWALKER_PW'),
+        # 'HOST': '/cloudsql/mtg-deck-builder-262320:us-central1:mtg-deckbuilder-db',
+        # 'PORT': '5432'
     }
 }
 
-if not os.getenv('GAE_INSTANCE'):
-    DATABASES['default']['HOST'] = '127.0.0.1'
+# if not os.getenv('GAE_INSTANCE'):
+#     DATABASES['default']['HOST'] = '127.0.0.1'
 
 
 # Password validation
