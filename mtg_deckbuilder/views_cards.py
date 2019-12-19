@@ -14,6 +14,10 @@ def card_list(request):
     return render(request, 'mtg_deckbuilder/card_list.html', {'cards': cards, 'deck_id': deck_id})
     
 
+"""
+This is not currently implemented,
+but saving it for the future in case I can get it to work
+"""
 # JSON API type view. JavaScript will make requests to this view
 def save_user_card_list(request):
     if request.method == 'POST':

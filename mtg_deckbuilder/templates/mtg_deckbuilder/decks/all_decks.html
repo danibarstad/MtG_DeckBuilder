@@ -1,6 +1,7 @@
 {% extends 'mtg_deckbuilder/base.html' %}
 {% block content %}
 
+<!-- Not applicable? -->
 <h2>Magic: The Gathering Deck Builder</h2>
 
 {% for deck in decks %}
@@ -11,11 +12,12 @@
         <p class='deck_text'>{{ deck.text }}</p>
         <hr>
 
-{% empty %}
-    <p>No decks</p>
+    {% empty %}
+        <p>No decks</p>
+
+    </div>
 
 {% endfor %}
 
-    </div>
 
 {% endblock %}

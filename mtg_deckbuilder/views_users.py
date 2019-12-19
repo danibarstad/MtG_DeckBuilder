@@ -10,14 +10,14 @@ from django.contrib.auth import authenticate, login, logout, update_session_auth
 from django.contrib.auth.forms import PasswordChangeForm
 
 
-
+# User Profile
 def user_profile(request, user_pk):
     user = User.objects.get(pk=user_pk)
     userdecks = Deck.objects.filter(user=user.pk)
-    
+
     editable = False
     if request.user.is_authenticated and request.user == user:
-        editable = True
+        editable = True     # Only allow a user to edit their own profiles
 
     return render(request, 'mtg_deckbuilder/users/user_profile.html', {'user' : user , 'decks' : userdecks })
 
@@ -27,26 +27,25 @@ def my_user_profile(request):
     return redirect('user_profile', user_pk=request.user.pk)
 
 
+# Users can edit their own profile
 @login_required
 def edit_user_profile(request):
     if request.method == 'POST':
         form = EditProfileForm(request.POST, instance=request.user)
-
         if form.is_valid():
             form.save()
             return redirect('user_profile', user_pk=request.user.pk)
-        
         else:
             message = 'Please check the changes you entered'
             args = {'form': form, 'message': message}
             return render(request, 'mtg_deckbuilder/users/edit_user_profile.html', args)
-        
     else:
         form = EditProfileForm(instance=request.user)
         args = {'form': form}
         return render(request, 'mtg_deckbuilder/users/edit_user_profile.html', args)
 
 
+# Users can edit their password
 @login_required
 def change_password(request):
     if request.method == 'POST':
@@ -64,6 +63,7 @@ def change_password(request):
         return render(request, 'mtg_deckbuilder/users/change_password.html', args)
 
 
+# Register new user
 def register(request):
     if request.method == 'POST':
         form = UserRegistrationForm(request.POST)
@@ -71,14 +71,11 @@ def register(request):
             user = form.save()
             user = authenticate(username=request.POST['username'], password=request.POST['password1'])
             login(request, user)
-            # return redirect('homepage')
             return redirect('my_user_profile')
-        
         else:
             message = 'Please check the data you entered'
             args = { 'form' : form , 'message' : message }
             return render(request, 'registration/register.html', args)
-    
     else:
         form = UserRegistrationForm()
         args = { 'form' : form }

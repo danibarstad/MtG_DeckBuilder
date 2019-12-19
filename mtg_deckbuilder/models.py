@@ -13,10 +13,10 @@ User._meta.get_field('first_name')._blank = False
 
 
 class Deck(models.Model):
-    user = models.ForeignKey('auth.User', blank=False, on_delete=models.CASCADE)
-    name = models.CharField(max_length=100)
-    text = models.CharField(max_length=100)
-    cardList = MultiSelectField('Cards', choices=mtg_api.get_card_list())
+    user = models.ForeignKey('auth.User', blank=False, on_delete=models.CASCADE)    # User
+    name = models.CharField(max_length=100)                                         # Deck title
+    text = models.CharField(max_length=100)                                         # Deck description
+    cardList = MultiSelectField('Cards', choices=mtg_api.get_card_list())           # Cards to choose from
 
     def __str__(self):
         return f'{self.name}'

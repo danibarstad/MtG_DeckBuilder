@@ -1,17 +1,18 @@
 {% extends 'mtg_deckbuilder/base.html' %}
-
 {% block content %}
 
-    <h2>Login</h2>
+<!-- Log in as an existing User -->
+<h2>Login</h2>
 
     <form method="POST" action="">
-    {% csrf_token %}
-    <table id='login_form'>
-        {{ form.as_table }}
-    </table>
+        {% csrf_token %}
+        <table id='login_form'>
+            {{ form.as_table }}
+        </table>
         <button type="submit">Login</button>
     </form>
 
     <p><a href="{% url 'register' %}">Or create an account</a></p>
 
-    {% endblock %}
+
+{% endblock %}

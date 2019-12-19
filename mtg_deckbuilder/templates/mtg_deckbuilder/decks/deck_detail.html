@@ -1,23 +1,29 @@
 {% extends 'mtg_deckbuilder/base.html' %}
 {% block content %}
 
-<h2 class="deck_name" style='display:inline'>{{ deck.name }}</h2><p style='display:inline'> by <a href="{% url 'user_profile' user_pk=deck.user.pk %}">{{ deck.user.username }}</a></p>
+
+<!-- View the details for the desired deck -->
+<!-- Deck title -->
+<h2 class="deck_name" style='display:inline'>{{ deck.name }}</h2>
+<p style='display:inline'> by <a href="{% url 'user_profile' user_pk=deck.user.pk %}">{{ deck.user.username }}</a></p>
     
-<di class='deck_info'>
+<div class='deck_info'>
+    
+    <!-- Deck description -->
     <p class="deck_text">&emsp;{{ deck.text }}</p>
-    {% for card in deck.cardList %}
-        <p class="deck_cards">&emsp;&emsp;{{ card }}</p>
-    {% endfor %}
+        {% for card in deck.cardList %}
+
+            <!-- List of cards in deck -->
+            <p class="deck_cards">&emsp;&emsp;{{ card }}</p>
+        {% endfor %}
 
     {% if deck.user == request.user and request.user.is_authenticated %}
-    <form action="{% url 'edit_deck' deck_pk=deck.pk %}">
-        <input id="EditDeckForm" type='submit' value='Edit Deck'>
-    </form>
+        <form action="{% url 'edit_deck' deck_pk=deck.pk %}">
+            <input id="EditDeckForm" type='submit' value='Edit Deck'>
+        </form>
     {% endif %}
 
 </div>
-
-
 
 
 {% endblock %}

@@ -1,6 +1,12 @@
 {% extends 'mtg_deckbuilder/base.html' %}
 {% block content %}
 
+
+<!-- 
+    This might not be applicable, but like a few other things 
+    was likely started early on and now i'm not sure how 
+    it fits into everything
+-->
 <h2>Magic: The Gathering Deck Builder</h2>
 
 <form method="POST" action="{% url 'deck_list' %}">
@@ -12,14 +18,15 @@
 
 {% for deck in decks %}
 
-<div>
-    {{ deck.name }}
-</div>
+    <div>
+        {{ deck.name }}
+    </div>
 
-{% empty %}
+    {% empty %}
 
-<P> You have no decks in your deck list</P>
+    <P> You have no decks in your deck list</P>
 
 {% endfor %}
+
 
 {% endblock %}

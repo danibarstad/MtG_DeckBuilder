@@ -26,14 +26,17 @@
     
     <hr>
 
+    <!-- 
+        Get flavor text from random card and display it at the bottom of each page
+     -->
     <div> 
-            <script>
-                // provide template context variable to JavaScript
-                let randomUrl = "{% url 'get_flavor_text' %}"
-            </script>
+        <script>
+            // provide template context variable to JavaScript
+            let randomUrl = "{% url 'get_flavor_text' %}"
+        </script>
             
-            <!-- Load script, will run once page is loaded -->
-            <script async defer src="{% static '/js/random_card.js' %}"></script>
+        <!-- Load script, will run once page is loaded -->
+        <script async defer src="{% static '/js/random_card.js' %}"></script>
 
         <!-- random flavor shown here  -->
         <i><p id="random-card-flavor">{{ get_flavor_text }}</p></i>

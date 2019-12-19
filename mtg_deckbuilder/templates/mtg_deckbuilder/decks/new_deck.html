@@ -1,41 +1,51 @@
 {% extends 'mtg_deckbuilder/base.html' %}
 {% block content %}
 
+
+<!-- Create a new deck -->
 <h2>New Deck</h2>
 
 <form method="POST" action="{% url 'new_deck' %}">
     {% csrf_token %}
     {{ form.as_p }}
 
-    <!-- {% load static %}
-   
-    <script>
-    let submitCardChoiceUrl = "{% url 'save_card_list' %}"
-    let deckId = "{{deck.id}}"
-    </script>
+    <!-- 
+        ***
+        COULD NOT GET THIS WORKING THE WAY I WANTED TO
+        BUT KEEPING IT BECAUSE I THINK IT CAN WORK EVENTUALLY
+        ***
+
+        {% load static %}
     
-      <script src="https://cdn.jsdelivr.net/npm/js-cookie@beta/dist/js.cookie.min.js"></script>
-      <script async defer src="{% static 'js/card_selector.js' %}"></script>
-    
-    <div>
-    <h3>Card Choices:</h3>
-        {% for card in cards %}
-            <p class="card-choices" id="{{card.name}}">{{ card.name }}</p>
-        {% endfor %}
-    </div>
-    
-    <div>
-    <h3>Selections:</h3>
-        <div id="chosen-cards">
+        <script>
+        let submitCardChoiceUrl = "{% url 'save_card_list' %}"
+        let deckId = "{{deck.id}}"
+        </script>
+        
+        <script src="https://cdn.jsdelivr.net/npm/js-cookie@beta/dist/js.cookie.min.js"></script>
+        <script async defer src="{% static 'js/card_selector.js' %}"></script>
+        
+        <div>
+        <h3>Card Choices:</h3>
+            {% for card in cards %}
+                <p class="card-choices" id="{{card.name}}">{{ card.name }}</p>
+            {% endfor %}
         </div>
-    </div>
-    
-    <button id="save-button">Save Choices</button>
-    <div id="message"></div> -->
+        
+        <div>
+        <h3>Selections:</h3>
+            <div id="chosen-cards">
+            </div>
+        </div>
+        
+        <button id="save-button">Save Choices</button>
+        <div id="message"></div> 
+    -->
 
     <P>
         <input type='submit' value='Add Deck'>
     </P>
 </form>
+
 
 {% endblock %}
