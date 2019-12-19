@@ -1,5 +1,6 @@
 from django import forms
 from .models import Deck
+from multiselectfield import MultiSelectField
 from . import mtg_api
 
 from django.contrib.auth.forms import UserCreationForm, UserChangeForm
@@ -15,8 +16,7 @@ from django.forms import ValidationError
 class NewDeckForm(forms.ModelForm):
     class Meta:
         model = Deck
-        fields = ('name', 'text')
-                                # ^ add 'cardList^ when implemented
+        fields = ('name', 'text', 'cardList')
 
 
 class UserRegistrationForm(UserCreationForm):

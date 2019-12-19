@@ -5,6 +5,9 @@
     
 <di class='deck_info'>
     <p class="deck_text">&emsp;{{ deck.text }}</p>
+    {% for card in deck.cardList %}
+        <p class="deck_cards">&emsp;&emsp;{{ card }}</p>
+    {% endfor %}
 
     {% if deck.user == request.user and request.user.is_authenticated %}
     <form action="{% url 'edit_deck' deck_pk=deck.pk %}">

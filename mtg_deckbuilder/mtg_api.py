@@ -5,11 +5,11 @@ from django.http import JsonResponse
 
 # Card List
 def get_card_list():
-    # cards = Card.where(setName='Khans of Tarkir') \
-    #             .all()
-    cards = Card.where(page=1) \
-                .where(pageSize=5) \
+    cards = Card.where(setName='Khans of Tarkir') \
                 .all()
+    # cards = Card.where(page=1) \
+    #             .where(pageSize=5) \
+    #             .all()
     return cards
 
 
