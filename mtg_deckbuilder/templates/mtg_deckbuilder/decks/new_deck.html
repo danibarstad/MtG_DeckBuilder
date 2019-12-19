@@ -1,7 +1,7 @@
 {% extends 'mtg_deckbuilder/base.html' %}
 {% block content %}
 
-<h2>New deck for {{ user.name }}</h2>
+<h2>New Deck</h2>
 
 <form method="POST" action="{% url 'new_deck' %}">
     {% csrf_token %}
@@ -18,14 +18,14 @@
       <script async defer src="{% static 'js/card_selector.js' %}"></script>
     
     <div>
-    <h3>Cards you want</h3>
+    <h3>Card Choices:</h3>
         {% for card in cards %}
             <p class="card-choices" id="{{card.name}}">{{ card.name }}</p>
         {% endfor %}
     </div>
     
     <div>
-    <h3>Cards you have chosen</h3>
+    <h3>Selections:</h3>
         <div id="chosen-cards">
         </div>
     </div>

@@ -16,13 +16,13 @@
     {% endif %}
 </div>
 
-<h3 id='username_decks'>{{ user.username }}'s decks</h3>
+<h3 id='username_decks'>{{ user.username }}'s Decks:</h3>
 
 {% for deck in decks %}
 
 <div class='deck' id="deck_{{ deck.pk }}">
     <h4 class="deck_name"><a href="{% url 'deck_detail' deck_pk=deck.pk %}">{{ deck.name }}</a></h4>
-    <p class="deck_text">{{ deck.text }}</p>
+    <p class="deck_text">&emsp;{{ deck.text }}</p>
 
 {% empty %}
     <p id='no_records'>No decks.</p>
