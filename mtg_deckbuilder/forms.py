@@ -8,11 +8,6 @@ from django.contrib.auth.models import User
 from django.forms import ValidationError
 
 
-# class CardList(forms.Form):
-#     card_list = mtg_api.get_card_list()
-#     cards = forms.ChoiceField(choices=card_list)
-
-
 class NewDeckForm(forms.ModelForm):
     class Meta:
         model = Deck
