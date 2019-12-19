@@ -94,3 +94,19 @@ class EditProfileForm(UserChangeForm):
             user.save()
         
         return user
+
+# class EditDeckForm():
+#     class Meta:
+#         model = Deck
+#         fields = ('name', 'text')
+#                                 # ^ add 'cardList^ when implemented
+    
+#     def save(self, commit=True):
+#         deck = super(EditDeckForm, self).save(commit=False)
+#         deck.name = self.cleaned_data['name']
+#         deck.text = self.cleaned_data['text']
+
+#         if commit:
+#             deck.save()
+        
+#         return deck

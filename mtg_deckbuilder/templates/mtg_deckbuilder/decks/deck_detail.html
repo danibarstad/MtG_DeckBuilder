@@ -3,6 +3,18 @@
 
 <h2 class="deck_name" style='display:inline'>{{ deck.name }}</h2><p style='display:inline'> by <a href="{% url 'user_profile' user_pk=deck.user.pk %}">{{ deck.user.username }}</a></p>
     
+<div>
     <p class="deck_text">&emsp;{{ deck.text }}</p>
+
+    {% if user.username %}
+    <form action="{% url 'edit_deck' deck_pk=deck.pk %}">
+        <input id="EditDeckForm" type='submit' value='Edit Deck'>
+    </form>
+    {% endif %}
+
+</div>
+
+
+
 
 {% endblock %}

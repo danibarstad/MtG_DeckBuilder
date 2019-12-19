@@ -52,21 +52,16 @@ def new_deck(request):
     return render(request, 'mtg_deckbuilder/decks/new_deck.html' , { 'form' : form })
 
 
-# help from Stack Overflow
-# https://stackoverflow.com/questions/1854237/django-edit-form-based-on-add-form
 @login_required
 def edit_deck(request, deck_pk):
-    if deck_pk:
-        deck = get_object_or_404(Deck, pk=deck_pk)
-        if deck.user != request.user:
-            return HttpResponseForbidden()
+    deck = get_object_or_404(Deck, pk=deck_pk)
+    if request.method == 'POST':
+        form = NewDeckForm(request.POST, instance=deck)
+        if form.is_valid():
+            deck = form.save(commit=False)
+            deck.user = request.user
+            deck.save()
+            return redirect('deck_detail', deck_pk=deck.pk)
     else:
-        deck = Deck(user=request.user)
-    
-    form = NewDeckForm(request.POST or None, instance=deck)
-    if request.POST and form.is_valid():
-        form.save()
-
-        return redirect('deck_detail', deck_pk=deck.pk)
-    
-    return render(request, 'mtg_deckbuilder/decks/edit_deck.html', {'form':form})
+        form = NewDeckForm(instance=deck)
+    return render(request, 'mtg_deckbuilder/decks/edit_deck.html', {'form': form})
