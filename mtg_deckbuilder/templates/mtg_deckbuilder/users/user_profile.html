@@ -20,17 +20,18 @@
         </form>
     {% endif %}
 </div>
+</br>
 
 <!-- Display user's decks -->
-<h3 id='username_decks'>{{ user.username }}'s Decks:</h3>
+<h3 id='username_decks'><u>{{ user.username }}'s Decks:</u></h3>
 
 {% for deck in decks %}
     <!-- 
         Only display title and brief description. 
     -->
     <div class='deck' id="deck_{{ deck.pk }}">
-        <h4 class="deck_name"><a href="{% url 'deck_detail' deck_pk=deck.pk %}">{{ deck.name }}</a></h4>
-        <p class="deck_text">&emsp;{{ deck.text }}</p>
+        <h4 class="deck_name">&emsp;<a href="{% url 'deck_detail' deck_pk=deck.pk %}">{{ deck.name }}</a></h4>
+        <p class="deck_text">&emsp;&emsp;{{ deck.text }}</p>
 
     {% empty %}
         <p id='no_records'>No decks.</p>
