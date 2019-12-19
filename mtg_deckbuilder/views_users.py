@@ -61,7 +61,7 @@ def change_password(request):
     else:
         form = PasswordChangeForm(request.user)
         args = { 'form' : form }
-        return render(request, 'users/change_password.html', args)
+        return render(request, 'mtg_deckbuilder/users/change_password.html', args)
 
 
 def register(request):
