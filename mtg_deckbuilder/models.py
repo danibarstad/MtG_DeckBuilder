@@ -3,6 +3,7 @@ from django.contrib.auth.models import User
 from . import mtg_api
 from multiselectfield import MultiSelectField
 
+User._meta.get_field('username')._unique = True
 User._meta.get_field('email')._unique = True
 
 User._meta.get_field('email')._blank = False
