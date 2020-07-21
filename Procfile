@@ -1,1 +1,1 @@
-web: uvicorn magicthegathering-deckbuilder.asgi:application --host 0.0.0.0 --port $PORT --workers $WEB_CONCURRENCY
+web: uvicorn mtg_deckbuilder.asgi:application --host 0.0.0.0 --port $PORT --workers $WEB_CONCURRENCY
