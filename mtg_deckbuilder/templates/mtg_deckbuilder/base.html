@@ -1,47 +1,57 @@
 {% load static %}
 <!DOCTYPE html>
 <html>
+
     <head>
         <title>Magic: The Gathering Deck Builder</title>
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/kognise/water.css@latest/dist/dark.min.css">
-
     </head>
+
     <body>
 
-    <h1>Magic: The Gathering Deck Builder</h1>
+        <h1>Magic: The Gathering Deck Builder</h1>
 
-        <a href="{% url 'homepage' %}">All Decks</a> | 
-        <a href="{% url 'new_deck' %}">New Deck</a> | 
+            <a href="{% url 'homepage' %}">All Decks</a> | 
+            <a href="{% url 'new_deck' %}">New Deck</a> | 
 
-        {% if request.user.is_authenticated %}
-            <span id='welcome_user_msg'>Hello, <a href="{% url 'user_profile' user_pk=request.user.pk %}">{{ request.user.username }}</a> | <a href="{% url 'logout' %}">Logout</a></a></span>
-        {% else %}
-            <span if='login_or_sign_up'><a href="{% url 'login' %}?next={{ request.path }}">Login or sign up</a></span>
-        {% endif %}
+            {% if request.user.is_authenticated %}
+                <span id='welcome_user_msg'>Hello, <a href="{% url 'user_profile' user_pk=request.user.pk %}">{{ request.user.username }}</a> | <a href="{% url 'logout' %}">Logout</a></a></span>
+            {% else %}
+                <span if='login_or_sign_up'><a href="{% url 'login' %}?next={{ request.path }}">Login or sign up</a></span>
+            {% endif %}
 
-    <hr>
-        
-        {% block content %}
-        {% endblock %}
-    
-    <hr>
-
-    <!-- 
-        Get flavor text from random card and display it at the bottom of each page
-     -->
-    <div> 
-        <script>
-            // provide template context variable to JavaScript
-            let randomUrl = "{% url 'get_flavor_text' %}"
-        </script>
+        <hr>
             
-        <!-- Load script, will run once page is loaded -->
-        <script async defer src="{% static '/js/random_card.js' %}"></script>
-
-        <!-- random flavor shown here  -->
-        <i><p id="random-card-flavor">{{ get_flavor_text }}</p></i>
-          
-    </div>
+            {% block content %}
+            {% endblock %}
+        
+        <hr>
 
     </body>
+
+    <footer>
+        <!-- 
+            Get flavor text from random card and display it at the bottom of each page 
+        -->
+
+        <div style="float: left;">
+            <script>
+                // provide template context variable to JavaScript
+                let randomUrl = "{% url 'get_flavor_text' %}"
+            </script>
+
+            <!-- Load script, will run once page is loaded -->
+            <script async defer src="{% static '/js/random_card.js' %}"></script>
+
+            <!-- random flavor shown here  -->
+            <i><p id="random-card-flavor">{{ get_flavor_text }}</p></i>
+        </div>
+
+
+        <div style="float: right;">
+            <p>created by <a href="https://danibarstad.com/" target="_blank">danibarstad</a> | <a href="https://github.com/danibarstad/MtG_DeckBuilder" target="_blank">GitHub</a></p>
+        </div>
+
+    </footer>
+
 </html>
