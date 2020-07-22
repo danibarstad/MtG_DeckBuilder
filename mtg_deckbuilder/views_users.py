@@ -24,7 +24,7 @@ def user_profile(request, user_pk):
 
 @login_required
 def my_user_profile(request):
-    return redirect('my_user_profile', user_pk=request.user_pk)
+    return redirect('user_profile', user_pk=request.user.pk)
 
 
 # Users can edit their own profile
