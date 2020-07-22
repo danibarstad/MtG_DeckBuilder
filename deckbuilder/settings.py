@@ -80,9 +80,9 @@ WSGI_APPLICATION = 'deckbuilder.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/2.2/ref/settings/#databases
 
+''' FOR LOCAL '''
 DATABASES = {
     'default': {
-        # local sql
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     }
