@@ -10,7 +10,7 @@
 <h2>Magic: The Gathering Deck Builder</h2>
 
 <form method="POST" action="{% url 'deck_list' %}">
-    {% csrf_token %}
+    <!-- {% csrf_token %} -->
     {{ new_deck_form }}
     <button type="submit">Add</button>
 </form>
