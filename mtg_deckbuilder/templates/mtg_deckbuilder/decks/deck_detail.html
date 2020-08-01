@@ -10,12 +10,14 @@
 <div class='deck_info'>
     
     <!-- Deck description -->
-    <p class="deck_text">&emsp;{{ deck.text }}</p>
-        {% for card in deck.cardList %}
+    <p class="deck_text">&emsp;<i>{{ deck.text }}</i></p>
+        <ul>
+            {% for card in deck.cardList %}
 
-            <!-- List of cards in deck -->
-            <p class="deck_cards">&emsp;&emsp;{{ card }}</p>
-        {% endfor %}
+                <!-- List of cards in deck -->
+                <li>{{ card }}</li>
+            {% endfor %}
+        </ul>
 
 </div>
 
