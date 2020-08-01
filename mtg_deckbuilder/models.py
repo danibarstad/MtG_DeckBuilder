@@ -1,5 +1,5 @@
-from django.db import models
 from . import mtg_api
+from django.db import models
 from multiselectfield import MultiSelectField
 
 

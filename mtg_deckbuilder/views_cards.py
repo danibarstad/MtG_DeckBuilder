@@ -1,8 +1,9 @@
-from django.shortcuts import render, redirect, get_object_or_404
 import json
-from django.http import JsonResponse, HttpResponse, HttpResponseNotAllowed
 from mtgsdk import Card
 from . import mtg_api
+from django.shortcuts import render, redirect, get_object_or_404
+from django.http import JsonResponse, HttpResponse, HttpResponseNotAllowed
+
 
 # View that gets all the possible cards and returns a response using a template
 def card_list(request):

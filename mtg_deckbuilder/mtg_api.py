@@ -1,5 +1,5 @@
-from mtgsdk import Card, Set
 import random
+from mtgsdk import Card, Set
 from django.http import JsonResponse
 
 

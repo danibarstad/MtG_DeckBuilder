@@ -1,23 +1,20 @@
-from django.shortcuts import render, redirect, get_object_or_404
 from .models import Deck
 from .forms import NewDeckForm
 from django.http import HttpResponseForbidden
+from django.shortcuts import render, redirect, get_object_or_404
 
 
 # Create a new deck
 def new_deck(request):
 
     if request.method == 'POST' :
-
         form = NewDeckForm(request.POST, request.FILES, instance=None)
         if form.is_valid():
             deck = form.save(commit=False)
             deck.save()
             return redirect('deck_detail', deck_pk=deck.pk)
-
     else :
         form = NewDeckForm()
-
     return render(request, 'mtg_deckbuilder/decks/new_deck.html' , { 'form' : form })
 
 

@@ -1,7 +1,7 @@
+from . import mtg_api
 from django import forms
 from .models import Deck
 from multiselectfield import MultiSelectField
-from . import mtg_api
 
 
 #Form for user to create a new deck
